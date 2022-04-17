@@ -6,7 +6,7 @@ const navbarData = [
   { id: 2, title: "About Us", link: "/about", children: [] },
   { id: 7, title: "Services", link: "/services", children: [] },
   { id: 3, title: "News", link: "/news", children: [] },
-  { id: 4, title: "Investor Relations", link: "/", children: [] },
+  { id: 4, title: "Investor Relations", link: "/investor-relations", children: [] },
   { id: 5, title: "Downloads", link: "/download", children: [] },
   { id: 6, title: "Careers", link: "/careers", children: [] },
   // { id: 7, title: "Loan Form", link: "/", children: [] },
