@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NewsSection = () => {
+const NewsSection = (props) => {
   const Images = [
     {
       id: 1,
@@ -47,7 +47,7 @@ const NewsSection = () => {
 
   return (
     <section className="wrapper bg-light wrapper-border">
-      <div className="container py-14 py-md-16">
+      <div className="container py-08 py-md-12">
         <div className="row align-items-center mb-7">
           <div className="col-md-8 col-lg-8 col-xl-7 col-xxl-6 pe-lg-17">
             <h2 className="display-4 mb-3">Related News</h2>
@@ -55,7 +55,7 @@ const NewsSection = () => {
           </div>
         </div>
         <div className="row gy-6">
-          {Images.map((img, index) => {
+          {Images.splice(0, props.limit || Images.length).map((img, index) => {
             return (
               <div key={img.id} className="item col-md-6 col-lg-4">
                 <figure className="rounded mb-6">

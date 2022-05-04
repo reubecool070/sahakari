@@ -2,6 +2,7 @@ import React from "react";
 import AboutUsSection from "../common/components/aboutUsSection";
 import Breadcrumb from "../common/components/breadcrumb";
 import Footer from "../common/components/footer";
+import GallerySection from "../common/components/GallerySection";
 import HeaderTwo from "../common/components/header-two";
 import TeamSection from "../common/components/TeamSection";
 import Layout from "../common/layout";
@@ -14,7 +15,8 @@ const AboutPage = () => {
         <HeaderTwo />
         <Breadcrumb main="Home" subMain="About Us" />
         <AboutUsSection />
-        <TeamSection />
+        {/* <TeamSection /> */}
+        <GallerySection />
         <Footer />
       </Layout>
     </MenuContextProvider>

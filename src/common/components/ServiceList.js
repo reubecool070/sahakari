@@ -41,6 +41,7 @@ const ServiceList = () => {
   const location = useLocation();
 
   useEffect(() => {
+    console.log("location", location);
     if (location.hash) {
       let elem = document.getElementById(location.hash.slice(1));
       if (elem) {

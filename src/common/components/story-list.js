@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const StoryList = () => {
+const StoryList = (props) => {
   return (
     <section className="wrapper bg-light">
       <div className="container pb-14 pt-14 pb-md-12 pt-md-12">
         <div className="row">
           <div className="col-lg-10 mx-auto">
-            <div className="blog classic-view mt-n17">
+            <div className={`blog classic-view ${props.disperse ? "" : "mt-n17"}`}>
               <article className="post">
                 <div className="card">
                   <figure className="card-img-top overlay overlay1 hover-scale">

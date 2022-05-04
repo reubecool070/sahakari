@@ -5,7 +5,7 @@ import { servicesList } from "./ServiceList";
 const ServiceOne = () => {
   return (
     <section className="wrapper bg-light">
-      <div className="container pt-12 pt-md-16 pb-12 pb-md-16">
+      <div className="container pt-12 pt-md-16 pb-1 pb-md-1">
         <div className="row">
           <div className="col-lg-8 col-xl-7 col-xxl-6">
             <h2 className="fs-16 text-uppercase text-line text-primary mb-3">What We Do?</h2>
@@ -14,7 +14,7 @@ const ServiceOne = () => {
             </h3>
           </div>
         </div>
-        <div className="row gx-md-8 gy-8 mb-14 mb-md-18">
+        <div className="row gx-md-8 gy-8 mb-4 mb-md-4">
           {servicesList.map((service, index) => {
             return (
               <div key={index} className="col-md-6 col-lg-3">

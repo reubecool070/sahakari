@@ -54,3 +54,45 @@
 .font-1 {
   font-size: 1rem;
 }
+
+.list {
+  padding-left: 0;
+  list-style: none;
+  margin-bottom: 0;
+}
+.list-shortcut {
+  position: fixed;
+  top: 35%;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.list-shortcut li a {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.7rem;
+  background-color: #088738;
+  border-radius: 24px 0 0 24px;
+  width: 2.25rem;
+  transition: all 0.2s ease-in;
+  font-size: 0.833rem;
+}
+.list-shortcut li span {
+  margin-left: 0.75rem;
+  flex-shrink: 0;
+  transform: translateX(100px);
+  transition: all 0.2s ease-in;
+  color: white;
+  font-weight: 600;
+}
+.list-shortcut li a:hover span {
+  transform: translateX(0px);
+}
+.list-shortcut li a:hover {
+  width: auto;
+}
