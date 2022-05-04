@@ -1,6 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
+import { loanRates } from "../data";
 
 const EmiCalculator = () => {
+  const [emiValue, setEmiValue] = useState(0);
+  const [loanType, setLoanType] = useState("");
+
+  const calculateResults = ({ amount, interest, month }) => {
+    const userAmount = Number(amount);
+    const calculatedInterest = Number(interest) / 100 / 12;
+    const calculatedPayments = Number(month);
+    const x = Math.pow(1 + calculatedInterest, calculatedPayments);
+    const monthly = (userAmount * x * calculatedInterest) / (x - 1);
+
+    if (isFinite(monthly)) {
+      const monthlyPaymentCalculated = monthly.toFixed(2);
+      // const totalPaymentCalculated = (monthly * calculatedPayments).toFixed(2);
+      // const totalInterestCalculated = (monthly * calculatedPayments - userAmount).toFixed(2);
+
+      // Set up results to the state to be displayed to the user
+      setEmiValue(monthlyPaymentCalculated);
+    }
+    return;
+  };
+
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const obj = {
+      load_type: data.get("loan_type"),
+      amount: parseFloat(data.get("loan_amount")),
+      interest: parseFloat(data.get("rate")),
+      month: parseFloat(data.get("duration")),
+    };
+    calculateResults(obj);
+  };
+
+  const handleLoanChange = (event) => {
+    setLoanType(event.target.value);
+  };
+
   return (
     <div id="#emi" className="row py-4" style={{ background: "rgba(0,0,0,0.1)" }}>
       <div className="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
@@ -8,22 +46,30 @@ const EmiCalculator = () => {
         <p className="lead text-center mb-10">
           {/* Reach out to us from our contact form and we will get back to you shortly. */}
         </p>
-        <form className="contact-form">
+        <form className="contact-form" onSubmit={onFormSubmit}>
           <div className="messages"></div>
           <div className="controls">
             <div className="row gx-4">
               <div className="col-md-6">
                 <div className="form-label-group mb-4">
-                  <input
+                  <select
                     id="load_type"
                     type="text"
                     name="loan_type"
                     className="form-control"
                     placeholder="Label"
                     required="required"
-                    dataError="Loan Type is required."
-                  />
-                  <label for="load_type">Loan Type *</label>
+                    onChange={(value) => handleLoanChange(value)}
+                  >
+                    {loanRates.map((loan) => {
+                      return (
+                        <option key={loan.id} value={loan.name}>
+                          {loan.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                  <label htmlFor="load_type">Loan Type *</label>
                   <div className="help-block with-errors"></div>
                 </div>
               </div>
@@ -37,9 +83,8 @@ const EmiCalculator = () => {
                     className="form-control"
                     placeholder="10000"
                     required="required"
-                    dataError="Loan Amount is required."
                   />
-                  <label for="loan_amount">Loan Amount (NPR) *</label>
+                  <label htmlFor="loan_amount">Loan Amount (NPR) *</label>
                   <div className="help-block with-errors"></div>
                 </div>
               </div>
@@ -51,11 +96,16 @@ const EmiCalculator = () => {
                     type="number"
                     name="rate"
                     className="form-control"
+                    min={0}
+                    step={0.01}
+                    max={100}
+                    presicion={2}
                     placeholder="10"
                     required="required"
-                    dataError="Interest Rate is required."
+                    defaultValue={13.5}
+                    value={loanRates.find((loan) => loan.name === loanType)?.rate}
                   />
-                  <label for="rate">Interest Rate *</label>
+                  <label htmlFor="rate">Interest Rate *</label>
                   <div className="help-block with-errors"></div>
                 </div>
               </div>
@@ -69,9 +119,8 @@ const EmiCalculator = () => {
                     className="form-control"
                     placeholder="Your Duration Month"
                     required="required"
-                    dataError="Duration is required."
                   />
-                  <label for="duration">Duration (in month)</label>
+                  <label htmlFor="duration">Duration (in month)*</label>
                   <div className="help-block with-errors"></div>
                 </div>
               </div>
@@ -82,8 +131,9 @@ const EmiCalculator = () => {
                   className="btn btn-primary rounded-pill btn-send mb-3"
                   value="Calculate"
                 />
-                <p className="text-muted">
-                  <strong>*</strong> These fields are required.
+                <p className="">
+                  <strong>Monthly Payment (EMI):</strong>
+                  <span className="text-primary mx-2"> {emiValue && `Rs. ${emiValue}`}</span>
                 </p>
               </div>
             </div>

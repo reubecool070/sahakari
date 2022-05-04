@@ -24,7 +24,6 @@ const Popup = (props) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [modalRef]);
-  console.log(show);
 
   return (
     <div
