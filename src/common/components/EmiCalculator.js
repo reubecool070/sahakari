@@ -4,6 +4,7 @@ import { loanRates } from "../data";
 const EmiCalculator = () => {
   const [emiValue, setEmiValue] = useState(0);
   const [loanType, setLoanType] = useState("");
+  const [loanRate, setLoanRate] = useState(13.5);
 
   const calculateResults = ({ amount, interest, month }) => {
     const userAmount = Number(amount);
@@ -36,7 +37,10 @@ const EmiCalculator = () => {
   };
 
   const handleLoanChange = (event) => {
-    setLoanType(event.target.value);
+    const type = event.target.value;
+    setLoanType(type);
+    const rate = loanRates.find((loan) => loan.name === type)?.rate;
+    setLoanRate(rate);
   };
 
   return (
@@ -102,8 +106,8 @@ const EmiCalculator = () => {
                     presicion={2}
                     placeholder="10"
                     required="required"
-                    defaultValue={13.5}
-                    value={loanRates.find((loan) => loan.name === loanType)?.rate}
+                    value={loanRate}
+                    onChange={(event) => setLoanRate(event.target.value)}
                   />
                   <label htmlFor="rate">Interest Rate *</label>
                   <div className="help-block with-errors"></div>
@@ -126,11 +130,7 @@ const EmiCalculator = () => {
               </div>
 
               <div className="col-12 text-center">
-                <input
-                  type="submit"
-                  className="btn btn-primary rounded-pill btn-send mb-3"
-                  value="Calculate"
-                />
+                <input type="submit" className="btn btn-primary rounded-pill btn-send mb-3" value="Calculate" />
                 <p className="">
                   <strong>Monthly Payment (EMI):</strong>
                   <span className="text-primary mx-2"> {emiValue && `Rs. ${emiValue}`}</span>

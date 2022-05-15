@@ -17,9 +17,9 @@ const Footer = () => {
                 {/* <Link to="/">
                   <i className="uil uil-twitter"></i>
                 </Link> */}
-                <Link to="/https://www.facebook.com/smcl2078">
+                <a href="https://www.facebook.com/smcl2078" target="_blank" rel="noreferrer">
                   <i className="uil uil-facebook-f"></i>
-                </Link>
+                </a>
                 {/* <Link to="/">
                   <i className="uil uil-instagram"></i>
                 </Link>
@@ -65,9 +65,7 @@ const Footer = () => {
           <div className="col-md-12 col-lg-3">
             <div className="widget">
               <h4 className="widget-title text-white mb-3">Our Newsletter</h4>
-              <p className="mb-5">
-                Subscribe to our newsletter to get our news & deals delivered to you.
-              </p>
+              <p className="mb-5">Subscribe to our newsletter to get our news & deals delivered to you.</p>
               <div className="newsletter-wrapper">
                 <div id="mc_embed_signup2">
                   <form>
@@ -92,23 +90,11 @@ const Footer = () => {
                   </form>
 
                   <div id="mce-responses2" className="clear">
-                    <div
-                      className="response"
-                      id="mce-error-response2"
-                      style={{ display: "none" }}
-                    ></div>
-                    <div
-                      className="response"
-                      id="mce-success-response2"
-                      style={{ display: "none" }}
-                    ></div>
+                    <div className="response" id="mce-error-response2" style={{ display: "none" }}></div>
+                    <div className="response" id="mce-success-response2" style={{ display: "none" }}></div>
                   </div>
                   <div style={{ position: "absolute", left: "-5000px" }} aria-hidden="true">
-                    <input
-                      type="text"
-                      name="b_ddc180777a163e0f9f66ee014_4b1bcfa0bc"
-                      tabIndex="-1"
-                    />
+                    <input type="text" name="b_ddc180777a163e0f9f66ee014_4b1bcfa0bc" tabIndex="-1" />
                   </div>
                   <div className="clear"></div>
                 </div>
